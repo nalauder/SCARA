@@ -1,7 +1,0 @@
-Motor 1:
-  Power of 1000 = ... degrees
-  Power of 1380 = 91 degrees
-
-Motor 2:
-  Power of 1000 = ... degrees
-  Power of 1630 = 90 degrees
