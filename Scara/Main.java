@@ -149,7 +149,7 @@ public class Main{
     
     // save angles into the file
     public void save_ang(){
-        String fname = UIFileChooser.open();
+        String fname = UIFileChooser.save();
         tool_path.convert_drawing_to_angles(drawing,arm,fname);
     }
     
