@@ -93,11 +93,13 @@ public class ToolPath
             OutputStreamWriter osw = new OutputStreamWriter(is);    
             Writer w = new BufferedWriter(osw);
             String str_out;
+            
             for (int i = 1; i < theta1_vector.size() ; i++){
                 str_out = String.format("%d,%d,%d\n",
-                  (int)(-10.6181253796*theta1_vector.get(i)+231.1839530333),(int)(-9.9390470527*theta2_vector.get(i)+890.0698728908),pen_vector.get(i)*1000+1000);
+                  (int)(-10.4262710214*theta1_vector.get(i)+246.581715473),(int)(-10.419109027*theta2_vector.get(i)+857.3622508793),pen_vector.get(i)*1000+1000);
                 w.write(str_out);
             }
+            w.write("1500,1500,1000");
             w.close();
         } catch (IOException e) {
             UI.println("Problem writing to the file statsTest.txt");
