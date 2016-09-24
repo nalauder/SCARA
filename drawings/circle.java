@@ -2,7 +2,7 @@ import java.io.*;
 import ecs100.*;
 
 public class circle{
-    private int angle;
+    private int angle 0;
     private int angleIncrement = 5;
     private double x = 0;
     private double y = 50;
@@ -10,12 +10,12 @@ public class circle{
     private double yNew;
     private double xOffset = 336;
     private double yOffset = 116;
-    private double radius = 50;
+    private double xRadius = 50;
+    private double yRadius = 50;
     
     public circle(){
         UI.initialise();
         UI.setDivider(0.5);
-        angle = 0;
         UI.addButton("Calculate", this::calculate);
     }
 
@@ -25,8 +25,8 @@ public class circle{
             while(angle <= 360){
                 UI.println("angle = "+angle);
 
-                xNew = (Math.sin(Math.toRadians(angle)))*radius;
-                yNew = (Math.cos(Math.toRadians(angle)))*radius;
+                xNew = (Math.sin(Math.toRadians(angle)))*xRadius;
+                yNew = (Math.cos(Math.toRadians(angle)))*yRadius;
 
                 UI.drawLine(x+100, y+100, xNew+100, yNew+100);
 
