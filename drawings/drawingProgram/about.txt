@@ -1,0 +1,5 @@
+This is a basic program similar to COMP102's miniPaint. You can draw lines and ovals.
+The lines are drawn point-to-point. You can add as many points as you want by clicking.
+To stop drawing the line, click twice in the same place.
+You click and drag to draw ovals.
+Each point/oval is added to a .txt file that the SCARA program can read.
