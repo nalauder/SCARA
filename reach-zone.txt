@@ -1,0 +1,1 @@
+The estimated reach zone of the SCARA robotic arm will be roughly a semi-circle with a radius of 24cm
