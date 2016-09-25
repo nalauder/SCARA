@@ -1,4 +1,3 @@
- 
 
 
 /**
@@ -24,20 +23,19 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-
 public class ToolPath
 {
-     int n_steps; //straight line segmentt will be broken
-                      // into that many sections
-                      
-     // storage for angles and 
-     // moto control signals
-     ArrayList<Double> theta1_vector;
-     ArrayList<Double> theta2_vector;
-     ArrayList<Integer> pen_vector;
-     ArrayList<Integer> pwm1_vector;
-     ArrayList<Integer> pwm2_vector;
-     ArrayList<Integer> pwm3_vector;
+    int n_steps; //straight line segmentt will be broken
+    // into that many sections
+
+    // storage for angles and 
+    // moto control signals
+    ArrayList<Double> theta1_vector;
+    ArrayList<Double> theta2_vector;
+    ArrayList<Integer> pen_vector;
+    ArrayList<Integer> pwm1_vector;
+    ArrayList<Integer> pwm2_vector;
+    ArrayList<Integer> pwm3_vector;
 
     /**
      * Constructor for objects of class ToolPath
@@ -45,16 +43,16 @@ public class ToolPath
     public ToolPath()
     {
         // initialise instance variables
-      n_steps = 50;
-      theta1_vector = new ArrayList<Double>();
-      theta2_vector = new ArrayList<Double>();
-      pen_vector = new ArrayList<Integer>();
-      pwm1_vector = new ArrayList<Integer>();
-      pwm2_vector = new ArrayList<Integer>();
-      pwm3_vector = new ArrayList<Integer>();
+        n_steps = 50;
+        theta1_vector = new ArrayList<Double>();
+        theta2_vector = new ArrayList<Double>();
+        pen_vector = new ArrayList<Integer>();
+        pwm1_vector = new ArrayList<Integer>();
+        pwm2_vector = new ArrayList<Integer>();
+        pwm3_vector = new ArrayList<Integer>();
 
     }
-    
+
     /**********CONVERT (X,Y) PATH into angles******************/
     public void convert_drawing_to_angles(Drawing drawing,Arm arm,String fname){
 
@@ -71,42 +69,44 @@ public class ToolPath
                 theta1_vector.add(arm.get_theta1()*180/Math.PI);
                 theta2_vector.add(arm.get_theta2()*180/Math.PI);
                 if (p1.get_pen()){ 
-                  pen_vector.add(1);
+                    pen_vector.add(1);
                 } else {
-                  pen_vector.add(0);
+                    pen_vector.add(0);
                 }
             }
         }
         save_angles(fname);
     }
-    
+
     public void save_angles(String fname){
         for ( int i = 0 ; i < theta1_vector.size(); i++){
-         UI.printf(" t1=%3.1f t2=%3.1f pen=%d\n",
-            theta1_vector.get(i),theta2_vector.get(i),pen_vector.get(i));
+            UI.printf(" t1=%3.1f t2=%3.1f pen=%d\n",
+                theta1_vector.get(i),theta2_vector.get(i),pen_vector.get(i));
         }
-        
-         try {
+
+        try {
             //Whatever the file path is.
             File statText = new File(fname);
             FileOutputStream is = new FileOutputStream(statText);
             OutputStreamWriter osw = new OutputStreamWriter(is);    
             Writer w = new BufferedWriter(osw);
             String str_out;
-            
             for (int i = 1; i < theta1_vector.size() ; i++){
-                str_out = String.format("%d,%d,%d\n",
-                  (int)(-10.4262710214*theta1_vector.get(i)+246.581715473),(int)(-10.419109027*theta2_vector.get(i)+857.3622508793),pen_vector.get(i)*1000+1000);
-                w.write(str_out);
+                if(i%10 == 0)
+                {
+                    str_out = String.format("%d,%d,%d\n",
+                        (int)(-10.4262710214*theta1_vector.get(i)+246.581715473),(int)(-10.419109027*theta2_vector.get(i)+857.3622508793),pen_vector.get(i)*1000+1000);
+                    w.write(str_out);
+                }
             }
             w.write("1500,1500,1000");
             w.close();
         } catch (IOException e) {
             UI.println("Problem writing to the file statsTest.txt");
         }
-        
+
     }
-    
+
     // takes sequence of angles and converts it 
     // into sequence of motor signals
     public void convert_angles_to_pwm(Arm arm){
@@ -117,7 +117,7 @@ public class ToolPath
             pwm2_vector.add(arm.get_pwm2());
         }
     }
-    
+
     // save file with motor control values
     public void save_pwm_file(){
         //...
