@@ -120,26 +120,34 @@ public class Arm
    // calculate tool position from motor angles 
    // updates variable in the class
    public void directKinematic(){
-       /**
-       // midpoint between joints
-       //double  xa =.... ;
-       //double  ya =.... ;
-       // distance between joints
-       //double d = ...;
-       if (d<2*r){
-           valid_state = true;
-         // half distance between tool positions
-         //double  h = ...;
-         //double alpha= ...;
-         // tool position
-        // double xt = ...;
-        // double yt = ...;
-         //  xt2 = xa - h.*cos(alpha-pi/2);
-         //  yt2 = ya - h.*sin(alpha-pi/2);
-       } else {
-           valid_state = false;
+        // midpoint between joints
+        double  xa = xj1 + 0.5*(xj1+xj2); 
+        double  ya = yj1 + 0.5*(yj1+yj2);
+        // distance between joints
+        double d = Math.hypot(xj2-xj1, yj2-yj1);
+        if (d<2*r){
+            valid_state = true;
+            // half distance between tool positions
+            double h = Math.sqrt(Math.pow(r, 2) - Math.pow(0.5*(d) , 2));
+            //double alpha= ...;
+            
+            double alpha = Math.atan((yj1 - yj2)/(xj2 - xj1));
+            // tool position
+            // double xt = ...;
+            double xt = xa + h*Math.cos((Math.PI / 2) - alpha);
+            // double yt = ...;
+            double yt = ya + h*Math.sin((Math.PI / 2) - alpha);
+            //  xt2 = xa - h.*cos(alpha-pi/2);
+            double xt2 = xa - h*Math.cos(alpha - (Math.PI / 2) );
+            //  yt2 = ya - h.*sin(alpha-pi/2);
+            double yt2 = ya - h*Math.sin(alpha - (Math.PI / 2) );
+            /**
+             * Need to double check what variable needs to be updated in the class                           
+             */  
+
+        } else {
+            valid_state = false;
         }
-       **/
     }
     
     // motor angles from tool position
