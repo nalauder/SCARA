@@ -1,0 +1,24 @@
+1-117: body outline
+	head: 	(340, 142), xRad = 50, yRad = 25, angleIncrement = 5
+	body: 	(340, 196), xRad = 80, yRad = 40, angleIncrement = 5
+	join:	(303, 161) and (377, 161)
+118-131: top button
+	(340, 186), xRad = 5, yRad = 5, angleIncrement = 30
+132-145: bottom button
+	(340, 214), xRad = 5, yRad = 5, angleIncrement = 30
+146-159: left eye
+	(325, 194), xRad = 5, yRad = 5, angleIncrement = 30
+160-173: right eye
+	(355, 194), xRad = 5, yRad = 5, angleIncrement = 30
+174-184: mouth
+	(340, 194), xRad = 20, yRad = 20, angleIncrement = 10, -45° to 45°
+185-200: hat brim
+	(377,77), xRad = 50, yrad = 50, angleIncrement = 5, -50° to 20°
+201-205: hat
+206-217: right hand
+	(420, 155), xRad = 8, yRad = 8, angleIncrement = 10, -80° to 20°
+218-220: right arm
+221-223: left arm
+224-235: right hand
+	(260, 155), xRad = 8, yRad = 8, angleIncrement = 10, -20° to 80°
+236-305: snowflakes
